@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shadow Creed - Charitable Giving Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+</head>
+<body>
+    <!-- Login Section -->
+    <section id="loginSection" class="section">
+        <div class="container">
+            <div class="auth-form">
+                <h2>Welcome to Shadow Creed</h2>
+                <form id="authForm">
+                    <div class="form-group">
+                        <input type="email" id="email" placeholder="Email Address" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="password" placeholder="Password" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="oath" required>
+                            I solemnly swear that I will be honest and truthful in all my dealings on this platform
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Sign In</button>
+                    <button type="button" id="toggleAuth" class="btn btn-secondary">Create Account</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Home Section -->
+    <section id="homeSection" class="section hidden">
+        <div class="container">
+            <h1 class="page-title">Recent Donation Requests</h1>
+            <div id="donationsGrid" class="requests-grid"></div>
+        </div>
+    </section>
+
+    <!-- Donation Request Section -->
+    <section id="donationRequestSection" class="section hidden">
+        <div class="container">
+            <h1 class="page-title">Create Donation Request</h1>
+            <form id="requestForm" class="auth-form">
+                <div class="form-group">
+                    <input type="text" id="name" placeholder="Full Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="number" id="amount" placeholder="Amount Needed" required>
+                </div>
+                <div class="form-group">
+                    <textarea id="reason" placeholder="Reason for Request" required></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="accountNumber" placeholder="Account Number" required>
+                </div>
+                <div class="form-group">
+                    <textarea id="address" placeholder="Address" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit Request</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Become Shadow Section -->
+    <section id="becomeShadowSection" class="section hidden">
+        <div class="container">
+            <h1 class="page-title">Become a Shadow</h1>
+            <form id="shadowForm" class="auth-form">
+                <div class="form-group">
+                    <input type="text" id="donorName" placeholder="Full Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="phone" placeholder="Phone Number" required>
+                </div>
+                <div class="form-group">
+                    <textarea id="motivation" placeholder="Why do you want to become a Shadow?" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Register as Shadow</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Profile Section -->
+    <section id="profileSection" class="section hidden">
+        <div class="container">
+            <h1 class="page-title">My Profile</h1>
+            <div class="profile-card card">
+                <div class="profile-image">
+                    <i class="fas fa-user"></i>
+                </div>
+                <h2 id="profileName">Loading...</h2>
+                <p id="profileEmail">Loading...</p>
+                <div id="profileStats" class="stats-grid"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="#" id="homeLink" class="nav-item active">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="#" id="donationRequestLink" class="nav-item">
+            <i class="fas fa-hand-holding-heart"></i>
+            <span>Request</span>
+        </a>
+        <a href="#" id="becomeShadowLink" class="nav-item">
+            <i class="fas fa-user-shield"></i>
+            <span>Be Shadow</span>
+        </a>
+        <a href="#" id="profileLink" class="nav-item">
+            <i class="fas fa-user"></i>
+            <span>Profile</span>
+        </a>
+    </nav>
+
+    <script>
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAabMApKqbirMcR4IwvahY3HpYyD-djsdQ",
+            authDomain: "giving-tree-w41pj.firebaseapp.com",
+            databaseURL: "https://giving-tree-w41pj-default-rtdb.firebaseio.com",
+            projectId: "giving-tree-w41pj",
+            storageBucket: "giving-tree-w41pj.firebasestorage.app",
+            messagingSenderId: "378231472140",
+            appId: "1:378231472140:web:15c4415cb44fc5093fee29"
+        };
+        firebase.initializeApp(firebaseConfig);
+    </script>
+    <script src="app.js"></script>
+</body>
+</html> 

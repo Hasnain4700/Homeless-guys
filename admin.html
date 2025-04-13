@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shadow Creed - Admin Panel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .admin-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .request-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px var(--shadow-color);
+            padding: 1.5rem;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .btn-approve {
+            background-color: #4caf50;
+            color: white;
+        }
+
+        .btn-reject {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .status-pending {
+            background-color: #ffd700;
+            color: #000;
+        }
+
+        .status-approved {
+            background-color: #4caf50;
+            color: white;
+        }
+
+        .status-rejected {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+    </style>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+</head>
+<body>
+    <!-- Admin Login Section -->
+    <section id="loginSection">
+        <div class="container">
+            <div class="auth-form">
+                <h2 id="authTitle">Admin Login</h2>
+                <form id="adminAuthForm">
+                    <div class="form-group" id="nameField" style="display: none;">
+                        <input type="text" id="adminName" placeholder="Full Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" placeholder="Email Address" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="password" placeholder="Password" required>
+                    </div>
+                    <div class="form-group" id="adminKeyField" style="display: none;">
+                        <input type="password" id="adminKey" placeholder="Admin Secret Key" required>
+                    </div>
+                    <button type="submit" id="authSubmitBtn" class="btn btn-primary">Login</button>
+                    <button type="button" id="toggleAuth" class="btn btn-secondary">Create Admin Account</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admin Dashboard Section -->
+    <section id="requestsSection" class="hidden">
+        <nav class="admin-nav">
+            <div class="container">
+                <h1>Admin Dashboard</h1>
+                <div class="nav-links">
+                    <a href="#" id="pendingLink" class="active">Pending</a>
+                    <a href="#" id="approvedLink">Approved</a>
+                    <a href="#" id="rejectedLink">Rejected</a>
+                    <a href="#" id="logoutLink">Logout</a>
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+            <h2 id="sectionTitle">Pending Donation Requests</h2>
+            <div id="requestsGrid" class="requests-grid"></div>
+        </div>
+    </section>
+
+    <script>
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAabMApKqbirMcR4IwvahY3HpYyD-djsdQ",
+            authDomain: "giving-tree-w41pj.firebaseapp.com",
+            databaseURL: "https://giving-tree-w41pj-default-rtdb.firebaseio.com",
+            projectId: "giving-tree-w41pj",
+            storageBucket: "giving-tree-w41pj.firebasestorage.app",
+            messagingSenderId: "378231472140",
+            appId: "1:378231472140:web:15c4415cb44fc5093fee29"
+        };
+        firebase.initializeApp(firebaseConfig);
+    </script>
+    <script src="admin.js"></script>
+</body>
+</html> 
